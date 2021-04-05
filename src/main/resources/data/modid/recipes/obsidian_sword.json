@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " O ",
+    " O ",
+    " S "
+  ],
+  "key": {
+    "O": {
+      "item": "modid:obsidian_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "modid:obsidian_sword",
+    "count": 1
+  }
+}

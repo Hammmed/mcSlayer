@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "OOO",
+    "O O",
+    "   "
+  ],
+  "key": {
+    "O": {
+      "item": "modid:obsidian_ingot"
+    }
+  },
+  "result": {
+    "item": "modid:obsidian_helmet",
+    "count": 1
+  }
+}
