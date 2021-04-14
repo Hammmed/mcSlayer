@@ -4,7 +4,9 @@
   "package": "net.fabricmc.example.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "ArmorItemMixin"
+    "ArmorItemMixin",
+    "PlayerEntityMixin",
+    "LivingEntityMixin"
   ],
   "client": [
     "ExampleMixin"
