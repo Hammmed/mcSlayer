@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
@@ -33,17 +34,17 @@ public abstract class LivingEntityMixin extends Entity {
             if(attacker instanceof PlayerEntity) {
                 PlayerEntityExt currPlayer = (PlayerEntityExt) attacker;
 
-                ((PlayerEntity) currPlayer).sendMessage(new LiteralText("Currtask " + currPlayer.getSlayerTaskCount() + " " + currPlayer.getSlayerTask()), false);
+//                ((PlayerEntity) currPlayer).sendMessage(new LiteralText("Currtask " + currPlayer.getSlayerTaskCount() + " " + currPlayer.getSlayerTask()), false);
 
                 if (this.getType().toString().equals("entity.minecraft." + currPlayer.getSlayerTask())) {
-                    System.out.println("You've killed ur task");
+//                    System.out.println("You've killed ur task");
                     currPlayer.reduceTaskCount(1);
 
                     if (currPlayer.getSlayerTaskCount() <= 0) {
                         currPlayer.increaseSlayerPoints(15);
 
                         ((PlayerEntity) currPlayer).sendMessage(new LiteralText("You've completed your task, you now have " + currPlayer.getSlayerPoints() + " points"), false);
-
+                        ((PlayerEntityExt) currPlayer).setSlayerTask("");
                     }
                 }
 

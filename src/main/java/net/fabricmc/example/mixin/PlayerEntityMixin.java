@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(PlayerEntity.class)
-public abstract class PlayerEntityMixin  extends LivingEntity implements PlayerEntityExt {
+public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEntityExt {
 
     private String slayerTask;
     private int slayerTaskCount;
