@@ -1,5 +1,6 @@
 package net.fabricmc.example.mixin;
 
+import net.fabricmc.example.RegisterItems;
 import net.fabricmc.example.events.AttackEntityCallback;
 import net.fabricmc.example.extensions.PlayerEntityExt;
 import net.minecraft.entity.Entity;
@@ -7,6 +8,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.ActionResult;
@@ -45,6 +47,14 @@ public abstract class LivingEntityMixin extends Entity {
 
                         ((PlayerEntity) currPlayer).sendMessage(new LiteralText("You've completed your task, you now have " + currPlayer.getSlayerPoints() + " points"), false);
                         ((PlayerEntityExt) currPlayer).setSlayerTask("");
+
+
+                        for (ItemStack item : ((PlayerEntity) currPlayer).inventory.main) {
+                            if (item.getItem() == RegisterItems.SLAYER_DINGUS) {
+                                item.decrement(1);
+                                break;
+                            }
+                        }
                     }
                 }
 

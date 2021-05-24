@@ -9,5 +9,6 @@
   "item.modid.obsidian_helmet": "Obsidian Helmet",
   "item.modid.obsidian_chestplate": "Obsidian Chestplate",
   "item.modid.obsidian_leggings": "Obsidian Leggings",
-  "item.modid.obsidian_boots": "Obsidian Boots"
+  "item.modid.obsidian_boots": "Obsidian Boots",
+  "block.modid.obsidian_block": "Obsidian Block",
 }

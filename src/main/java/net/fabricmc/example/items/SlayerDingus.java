@@ -2,6 +2,7 @@ package net.fabricmc.example.items;
 
 import io.github.cottonmc.cotton.gui.PropertyDelegateHolder;
 import io.github.cottonmc.cotton.gui.client.CottonClientScreen;
+import net.fabricmc.example.RegisterItems;
 import net.fabricmc.example.extensions.PlayerEntityExt;
 import net.fabricmc.example.gui.SampleGuiItemDescription;
 import net.fabricmc.example.gui.SlayerScreen;
@@ -16,7 +17,11 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.core.jmx.Server;
 
+import java.util.Random;
+
 public class SlayerDingus extends Item {
+
+    String[] taskListArr = {"chicken", "cow", "sheep"};
 
     public SlayerDingus(Settings settings) {
         super(settings);
@@ -25,12 +30,20 @@ public class SlayerDingus extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!world.isClient) {
-            ServerPlayerEntity serverPlayer = (ServerPlayerEntity) user;
-            System.out.println(((PlayerEntityExt) serverPlayer).getSlayerTask());
+            PlayerEntityExt serverPlayer = (PlayerEntityExt) user;
 
-            MinecraftClient.getInstance().openScreen(new SlayerScreen(new SampleGuiItemDescription((PlayerEntityExt) user)));
+            if (serverPlayer.getSlayerTaskCount() <= 0) {
+                serverPlayer.setSlayerTask(getRandomString(taskListArr));
+                serverPlayer.setSlayerTaskCount(((int) (Math.random() * (10 - 1)) + 1));
+            }
+
+            MinecraftClient.getInstance().openScreen(new SlayerScreen(new SampleGuiItemDescription(serverPlayer)));
         }
+
         return super.use(world, user, hand);
     }
 
+    public String getRandomString(String[] arr) {
+        return arr[(new Random()).nextInt(arr.length)];
+    }
 }

@@ -25,6 +25,7 @@ public class RegisterItems {
     public static final ArmorMaterial OBSIDIAN_ARMOR_MATERIAL = new ObsidianArmorMaterial();
     public static final ObsidianIngot OBSIDIAN_INGOT = new ObsidianIngot(new FabricItemSettings().group(ExampleMod.OBSIDIAN_GROUP));
 
+
     //Armor
     public static final Item OBSIDIAN_HELMET = new ArmorItem(OBSIDIAN_ARMOR_MATERIAL, EquipmentSlot.HEAD, new Item.Settings().group(ExampleMod.OBSIDIAN_GROUP));
     public static final Item OBSIDIAN_CHESTPLATE = new ArmorItem(OBSIDIAN_ARMOR_MATERIAL, EquipmentSlot.CHEST, new Item.Settings().group(ExampleMod.OBSIDIAN_GROUP));
@@ -42,6 +43,8 @@ public class RegisterItems {
     //Blocks
     public static final ObsidianBlock OBSIDIAN_BLOCK = new ObsidianBlock(FabricBlockSettings.of(Material.METAL).strength(2.0F));
 
+    public static final BlockItem OBSIDIAN_BLOCK_ITEM = new BlockItem(OBSIDIAN_BLOCK, new FabricItemSettings().group(ExampleMod.OBSIDIAN_GROUP));
+
     public static void register() {
         Registry.register(Registry.ITEM, new Identifier("modid", "slayer_dingus"), SLAYER_DINGUS);
         Registry.register(Registry.ITEM, new Identifier("modid", "obsidian_ingot"), OBSIDIAN_INGOT);
@@ -58,7 +61,7 @@ public class RegisterItems {
         Registry.register(Registry.ITEM, new Identifier("modid", "obsidian_hoe"), OBSIDIAN_HOE);
 
         Registry.register(Registry.BLOCK, new Identifier("modid", "obsidian_block"), OBSIDIAN_BLOCK);
-        Registry.register(Registry.ITEM, new Identifier("modid"), new BlockItem(OBSIDIAN_BLOCK, new FabricItemSettings().group(ExampleMod.OBSIDIAN_GROUP)));
+        Registry.register(Registry.ITEM, new Identifier("modid", "obsidian_block_item"), OBSIDIAN_BLOCK_ITEM);
 
 
     }
