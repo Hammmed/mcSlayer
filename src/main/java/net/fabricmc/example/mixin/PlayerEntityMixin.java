@@ -16,8 +16,12 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import java.util.Random;
+
 @Mixin(PlayerEntity.class)
 public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEntityExt {
+
+    private static final String[] taskListArr = {"chicken", "cow", "sheep", "zombie", "skeleton", "spider"};
 
     @Shadow @Final public PlayerInventory inventory;
     private String slayerTask;
@@ -42,6 +46,10 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
         this.slayerPoints+= amt;
     }
 
+    public void reduceSlayerPoints(int amt) {
+        this.slayerPoints-= amt;
+    }
+
     public int getSlayerTaskCount() {
         return slayerTaskCount;
     }
@@ -60,6 +68,15 @@ public abstract class PlayerEntityMixin extends LivingEntity implements PlayerEn
 
     public int getSlayerPoints() {
         return slayerPoints;
+    }
+
+    public void setRandomTask() {
+        this.setSlayerTask(getRandomString(taskListArr));
+        this.setSlayerTaskCount(((int) (Math.random() * (10 - 1)) + 1));
+    }
+
+    public String getRandomString(String[] arr) {
+        return arr[(new Random()).nextInt(arr.length)];
     }
 
     @Inject(method = "writeCustomDataToTag", at = @At("RETURN"))

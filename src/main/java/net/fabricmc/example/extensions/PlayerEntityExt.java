@@ -5,6 +5,8 @@ public interface PlayerEntityExt {
 
     public void increaseSlayerPoints(int amt);
 
+    public void reduceSlayerPoints(int amt);
+
     public int getSlayerTaskCount();
 
     public void setSlayerTaskCount(int taskCount);
@@ -14,4 +16,7 @@ public interface PlayerEntityExt {
     public void setSlayerTask(String task);
 
     public int getSlayerPoints();
+
+    public void setRandomTask();
+
 }

@@ -21,7 +21,6 @@ import java.util.Random;
 
 public class SlayerDingus extends Item {
 
-    String[] taskListArr = {"chicken", "cow", "sheep"};
 
     public SlayerDingus(Settings settings) {
         super(settings);
@@ -33,8 +32,7 @@ public class SlayerDingus extends Item {
             PlayerEntityExt serverPlayer = (PlayerEntityExt) user;
 
             if (serverPlayer.getSlayerTaskCount() <= 0) {
-                serverPlayer.setSlayerTask(getRandomString(taskListArr));
-                serverPlayer.setSlayerTaskCount(((int) (Math.random() * (10 - 1)) + 1));
+                serverPlayer.setRandomTask();
             }
 
             MinecraftClient.getInstance().openScreen(new SlayerScreen(new SampleGuiItemDescription(serverPlayer)));
@@ -43,7 +41,4 @@ public class SlayerDingus extends Item {
         return super.use(world, user, hand);
     }
 
-    public String getRandomString(String[] arr) {
-        return arr[(new Random()).nextInt(arr.length)];
-    }
 }
